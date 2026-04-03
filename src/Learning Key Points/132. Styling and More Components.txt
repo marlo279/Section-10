@@ -1,0 +1,2 @@
+- Stylings toegevoegd en component LearingResources verplaats van App.vue naar nieuwe component StoredResources
+- StoredResources neemt Object lijst aan van App.vue en geeft die door aan LearningResource.
