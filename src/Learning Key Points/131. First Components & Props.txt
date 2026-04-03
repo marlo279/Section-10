@@ -1,0 +1,2 @@
+- Props kunnen makkelijk doorgegeven worden vanuit parent naar child.
+- Child gebruikt een lijst met strings om props op te vangen (ipv. object notatie)
