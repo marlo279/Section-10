@@ -1,0 +1,50 @@
+Alles leek te kloppen maar toch kreeg ik een error in de compiler, waarom?
+
+In het component gebruikte ik twee imports van:
+- AddResource
+- StoredResources
+
+Alles bleek goed te zijn en kon nergens fouten vinden. Wat bleek was dat de oorzaak
+van de error de import paden waren:
+
+import StoredResources from './components/learning-resources/StoredResources.vue';
+import AddResource from './components/learning-resources/AddResource.vue';
+
+Inprincipe niks mis mee zou je zeggen. Het pad klopt in zekere zin. Maar kijk eens naar het start punt.
+Deze begint bij './component'. De volgende gedachten is nu, laat ik hier het volledige pad neerzetten
+vanaf het begin dus:
+
+import StoredResources from './src/components/learning-resources/StoredResources.vue';
+import AddResource from './src/components/learning-resources/AddResource.vue';
+
+Ook dit geeft nog steeds een error. Wat is dan de juiste pad?
+Het antwoord is simpel:
+
+import StoredResources from './StoredResources.vue';
+import AddResource from './AddResource.vue';
+
+In dit geval, bevind het component TheResources in de zelfde folder als AddResource en
+StoredResources. Om deze reden moet je de import maken vanaf dit start punt.
+
+
+================
+INJECT & PROVIDE
+================
+In de component word <component> gebruikt in combinatie met :is="..." om dynamisch te bapelen
+welke component op die plek geladen moet worden.
+
+Hier ontstaat een probleem wanneer je een component hebt die props nodig heeft om te kunnen functioneren.
+Je zou props kunnen doorgeven aan eenc conpenent:
+
+<component 
+  :is="selectedTab"
+  :some-prop="value"
+  :another-prop="123"
+/>
+
+Als het een paar zijn (of polymorfism idee), dan zou dit goed kunnen. Maar stel nu voor
+Je hebt meerdere componenten met ieder hun eigen props, dan is dit simpel weg niet praktisch.
+Daarom is de beste oplossing het gebruik van provide/inject.
+
+'storedResources' word meegegeven als provide en StoredResources pakt het vervolgens op
+als inject: ["resources"].
