@@ -1,0 +1,5 @@
+Op een herbruikbare manier een button gemaakt, waarbij je verschillende 
+css style kan doorgeven aan de button vanuit de parrent doormiddel
+van de class name.
+
+Op deze manier hoef je geen complexe css stylings te schrijven in de parent component
