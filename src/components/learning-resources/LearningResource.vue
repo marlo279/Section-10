@@ -1,6 +1,6 @@
 <template>
   <li>
-    <div>
+    <base-card>
       <header>
         <h3>{{ title }}</h3>
         <button>Delete</button>
@@ -11,7 +11,7 @@
           View Resource
         </a>
       </nav>
-    </div>
+    </base-card>
   </li>
 </template>
 

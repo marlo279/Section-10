@@ -1,0 +1,12 @@
+Ik kreeg een error, vanuit main.js maakte ik deze import:
+- import BaseCard from './components/ui/BaseCard.vue';
+
+Het instellen van BaseCard als een globaal component die overal in 
+de app gebruikt worden werkte niet. Omdat de import path hoofdletter 
+gevoelig is. De UI folder moest in hoofdletters gezet worden.
+
+import BaseCard from './components/UI/BaseCard.vue';
+
+- Je moet goed na denken hoe vaak een component word gebruikt binnen een app
+Soms is de beste keuze om de component globaal beschikbaar te maken.
+
