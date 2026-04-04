@@ -1,0 +1,30 @@
+============
+DIALOG
+============
+
+In plaats van een leleijke alert() te gebruiken kan je met <dialog> je iegen custom vensters maken.
+
+============
+BACKDROP
+============
+
+De backdrop is de achtergrond van een popup. Je wilt dat wanneer je op de backdrop klikt dat de 
+dialog venster sluit. Dit los je op door een emit te maken.
+
+============
+NAMED ACTIONS
+============
+
+In AddResource Component word named actions aangeroepen:
+
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+
+Hier word # gebruikt wat de verkorting voor v-slot is.
+
+Deze zijn ingesteld in BaseDialog door de slot een name te geven:
+
+    <slot name="actions">
+        <base-button @click="$emit('close')">Close</base-button>
+    </slot>
