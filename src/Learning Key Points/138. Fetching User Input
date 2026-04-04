@@ -1,0 +1,52 @@
+===========
+FORM
+===========
+Er zijn een paar belangrijke punten waar je op moet leten bij het maken van een form.
+
+Bij het maken van een label en input zoals hier:
+
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" ref="titleInput" />
+
+Zie je dat for 'for="title"' gebruikt word. Dit laat weten dat label gekoppeld word met id="title" in input.
+
+Om je form te versturen gebruik je type="submit" in de button. Maar dit is nog niet genoeg.
+In de form element gebruik je het volgende:
+
+    <form @submit.prevent="submitForm">
+
+.prevent zorgt ervoor dat de pagina niet herladen word (standaard form gedrag bij zenden van een form).
+En met het submit event geef je aan welke methode je wilt aanroepen met submit, wat in dit geval submitForm() is.
+
+Je kan v-model gebruik om de input op te vangen, maar $refs is ook een goed alternatief.
+Deze plaats je op het input veld met ref="...":
+
+    <input id="link" name="link" type="url" ref="linkInput" />
+
+Vanuit de script kan je de waarde zo opvangen:
+
+      const enteredTitle = this.$refs.titleInput.value;
+    
+Je gebruikt de $refs notatie in combinatie met value om de waarde eruit op te vangen.
+
+
+=============
+KEEP ALIVE
+=============
+
+Je kunt de form openen en weg klikken. Wanneer het weer opent, zie je dat je dat alle invoerwaardes verdwenen zijn
+dit komt omdat het component helemaal uit de dom gehaald word, met <keep-alive> ... </keep-alive>
+
+=============
+PROVICE / INJECT METHODS
+=============
+
+Je kan ook methodes mee geven aan provide.
+
+  provide() {
+    return {
+      addResource: this.addResource,
+    };
+  },
+
+Vervolgens kan je met de key name met inject de methode gaan gebruiken in een child component.
