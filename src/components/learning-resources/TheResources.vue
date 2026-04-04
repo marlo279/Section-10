@@ -1,9 +1,6 @@
 <template>
   <base-card>
-    <base-button
-      @click="selectTab('stored-resources')"
-      :mode="storedResButtonMode"
-    >
+    <base-button @click="selectTab('stored-resources')" :mode="storedResButtonMode">
       Stored Resources
     </base-button>
     <base-button @click="selectTab('add-resource')" :mode="addResButtonMode">
@@ -16,8 +13,8 @@
 </template>
 
 <script>
-import StoredResources from './StoredResources.vue';
-import AddResource from './AddResource.vue';
+import StoredResources from "./StoredResources.vue";
+import AddResource from "./AddResource.vue";
 
 export default {
   components: {
@@ -26,19 +23,19 @@ export default {
   },
   data() {
     return {
-      selectedTab: 'stored-resources',
+      selectedTab: "stored-resources",
       storedResources: [
         {
-          id: 'official-guide',
-          title: 'Official Guide',
-          documentation: 'The official Vue.js documentation.',
-          link: 'https://vuejs.org',
+          id: "official-guide",
+          title: "Official Guide",
+          documentation: "The official Vue.js documentation.",
+          link: "https://vuejs.org",
         },
         {
-          id: 'google',
-          title: 'Google',
-          documentation: 'Learn to Google...',
-          link: 'https://google.com',
+          id: "google",
+          title: "Google",
+          documentation: "Learn to Google...",
+          link: "https://google.com",
         },
       ],
     };
@@ -47,14 +44,15 @@ export default {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      removeResource: this.removeResource,
     };
   },
   computed: {
     storedResButtonMode() {
-      return this.selectedTab === 'stored-resources' ? null : 'flat';
+      return this.selectedTab === "stored-resources" ? null : "flat";
     },
     addResButtonMode() {
-      return this.selectedTab === 'add-resource' ? null : 'flat';
+      return this.selectedTab === "add-resource" ? null : "flat";
     },
   },
   methods: {
@@ -69,7 +67,11 @@ export default {
         link: url,
       };
       this.storedResources.unshift(newResource);
-      this.selectTab('stored-resources');
+      this.selectTab("stored-resources");
+    },
+    removeResource(resId) {
+      const resIndex = this.storedResources.findIndex((res) => res.id === resId);
+      this.storedResources.splice(resIndex, 1);
     },
   },
 };

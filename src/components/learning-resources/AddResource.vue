@@ -1,14 +1,10 @@
 <template>
-  <base-dialog
-    v-if="inputIsInvalid"
-    title="Invalid Input"
-    @close="confirmError"
-  >
+  <base-dialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
     <template #default>
       <p>Unfortunately, at least one input value is invalid.</p>
       <p>
-        Please check all inputs and make sure you enter at least a few
-        characters in each input field.
+        Please check all inputs and make sure you enter at least a few characters in each
+        input field.
       </p>
     </template>
     <template #actions>
@@ -23,12 +19,7 @@
       </div>
       <div class="form-control">
         <label for="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="3"
-          ref="descInput"
-        />
+        <textarea id="description" name="description" rows="3" ref="descInput" />
       </div>
       <div class="form-control">
         <label for="link">Link</label>
@@ -43,7 +34,7 @@
 
 <script>
 export default {
-  inject: ['addResource'],
+  inject: ["addResource"],
   data() {
     return {
       inputIsInvalid: false,
@@ -56,9 +47,9 @@ export default {
       const enteredLink = this.$refs.linkInput.value;
 
       if (
-        enteredTitle.trim() === '' ||
-        enteredDescription.trim() === '' ||
-        enteredLink.trim() === ''
+        enteredTitle.trim() === "" ||
+        enteredDescription.trim() === "" ||
+        enteredLink.trim() === ""
       ) {
         this.inputIsInvalid = true;
         return;

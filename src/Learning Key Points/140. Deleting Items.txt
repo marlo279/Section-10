@@ -1,0 +1,46 @@
+In de component TheResources is de mehtode removeResource(), deze verwijderd een object uit de 
+storedResources (object lijst).
+
+      storedResources: [
+        {
+          id: "official-guide",
+          title: "Official Guide",
+          documentation: "The official Vue.js documentation.",
+          link: "https://vuejs.org",
+        },
+        {
+          id: "google",
+          title: "Google",
+          documentation: "Learn to Google...",
+          link: "https://google.com",
+        },
+      ],
+
+De methode moet gebruikt worden door de delete button. Deze zit in het component LearningResource.
+Vanuit TheResources Component kan zowel storedResources of Add resources ingeladen worden. 
+storedResources heeft LearningResource als component inzicht. Dus:
+
+    TheResources --> storedResources --> LearningResource
+        | <-- removeResource methode          | <-- Button
+        ---------------------------------------
+
+Daarom is de slimme aanpak om via provide/inject de methode functionaliteit mogelijk te maken in de LearnResources.
+Als je eenmaal deze opzet gemaakt hebt, en je wil een card verwijderen, dan zie je niks veranderen, hoe komt dat?
+
+De methode ziet er zo uit:
+
+    removeResource(resId) {
+      this.storedResources = this.storedResources.filter((res) => res.id !== id);
+      console.log("Removing resource with id:", id);
+    },
+
+Het probleem licht hier hoe Provide/inject werkt. Provide geeft de referentie in memory door van this.storedResources, de componenten met inject 
+gebruiken dezelfde referentie. Door dit te doen:
+
+    this.storedResources = this.storedResources.filter((res) => res.id !== id);
+
+Verander je de hele referentie, waardoor de andere componenten nog de oude referentie behouden. Daarom is dit de juiste aanpak:
+
+    this.storedResources.splice(index, 1);
+
+Je maakt een aanpassing in de zelfde referentie en dit werkt wel.
